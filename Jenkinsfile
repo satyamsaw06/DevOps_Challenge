@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     parameters {
-        string(defaultValue: '/mnt/devopschallenge', description: 'Custom workspace path', name: 'customWorkspace')
+        string(defaultValue: '/home/satyam/', description: 'Custom workspace path', name: 'customWorkspace')
     }
     
     stages {
@@ -40,6 +40,17 @@ pipeline {
                 }
                     }
                 }
+        stage('Creating deployement & used service nodeport ') {
+            steps {
+                script {
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubernetes', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://192.168.49.2:8443') {
+                    sh "kubectl apply -f /home/satyam/deployement.yaml"
+                    sh "kubectl apply -f /home/satyam/node-portservice.yaml"
+                    sh "kubectl port-forward --address 0.0.0.0 svc/helloworld-service 30000:80" #used minikube, push forward 
+}
+                }
+            }
+        }
             }
         }
     }
