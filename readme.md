@@ -41,6 +41,3 @@ First, checkout this project locally and then follow these steps:
 - Check out this [Docker + Tutum hello world repo](https://github.com/tutumcloud/hello-world)
 
 
-## Credits and License
-
-Put together by [Dana Woodman](mailto:dana@danawoodman.com) and released under the MIT license. Have fun!
